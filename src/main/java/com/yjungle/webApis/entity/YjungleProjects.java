@@ -17,6 +17,8 @@ public class YjungleProjects  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private String title;
+
     private String body;
 
     private String teaser;
@@ -37,6 +39,14 @@ public class YjungleProjects  {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getBody() {
@@ -95,17 +105,4 @@ public class YjungleProjects  {
         this.download_url = download_url;
     }
 
-    @Override
-    public String toString() {
-        return "YjungleProjects{" +
-                "id=" + id +
-                ", body='" + body + '\'' +
-                ", teaser='" + teaser + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", author='" + author + '\'' +
-                ", views=" + views +
-                ", date_published='" + date_published + '\'' +
-                ", download_url='" + download_url + '\'' +
-                '}';
-    }
 }

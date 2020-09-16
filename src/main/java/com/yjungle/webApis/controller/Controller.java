@@ -6,6 +6,7 @@ package com.yjungle.webApis.controller;
  */
 
 import com.yjungle.webApis.dao.WebApisDao;
+import com.yjungle.webApis.entity.YjungleBlog;
 import com.yjungle.webApis.entity.YjungleProjects;
 import com.yjungle.webApis.repository.YjungleBlogRepository;
 import com.yjungle.webApis.repository.YjungleProjectsRepository;
@@ -20,16 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 @RestController
 public class Controller {
-
-    @Autowired
-    private YjungleBlogRepository blogRepository;
-
-    @Autowired
-    private YjungleProjectsRepository projectsRepository;
 
     @Autowired
     private Environment environment;
@@ -43,11 +40,11 @@ public class Controller {
     }
 
     @RequestMapping(value = "/projects", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createProject(@RequestBody HashMap<String, String> requestBody){
+    public ResponseEntity<?> createProject(@RequestBody HashMap<String, String> requestData){
 
         ApiResponse apiResponse = new ApiResponse();
 
-        if (dao.createProject(requestBody) == 1) {
+        if (dao.createProject(requestData) == 1) {
             apiResponse.setResponseCode("00");
             apiResponse.setResponseMessage("Project created successfully");
         } else {
@@ -58,12 +55,19 @@ public class Controller {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+    private String formatDate() {
+        String pattern = "dd/M/yyyy hh:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(new Date());
+    }
+
+
     @RequestMapping(value = "/blog", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createBlog(@RequestBody HashMap<String, String> requestBody){
+    public ResponseEntity<?> createBlog(@RequestBody HashMap<String, String> requestData){
 
         ApiResponse apiResponse = new ApiResponse();
 
-        if (dao.createBlog(requestBody) == 1) {
+        if (dao.createBlog(requestData) == 1) {
             apiResponse.setResponseCode("00");
             apiResponse.setResponseMessage("Blog created successfully");
         } else {

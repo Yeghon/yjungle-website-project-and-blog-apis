@@ -17,6 +17,8 @@ public class YjungleBlog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private String title;
+
     private String body;
 
     private String teaser;
@@ -35,6 +37,14 @@ public class YjungleBlog {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getBody() {

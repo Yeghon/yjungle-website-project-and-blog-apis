@@ -5,7 +5,7 @@ import com.yjungle.webApis.entity.YjungleProjects;
 import com.yjungle.webApis.repository.YjungleBlogRepository;
 import com.yjungle.webApis.repository.YjungleProjectsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,18 +14,20 @@ import java.util.HashMap;
  * Created on 9/16/20
  * Author YeghonHaron
  */
+@Component
 public class WebApisDaoImpl implements WebApisDao{
-    
+
     @Autowired
     private YjungleProjectsRepository projectsRepository;
     @Autowired
     private YjungleBlogRepository blogRepository;
-    
+
     @Override
     public Integer createProject(HashMap<String, String> requestData) {
         try {
             YjungleProjects projects = new YjungleProjects();
             projects.setAuthor(requestData.get("author"));
+            projects.setTitle(requestData.get("title"));
             projects.setBody(requestData.get("body"));
             projects.setDate_published(formatDate());
             projects.setDownload_url(requestData.get("download_link"));
@@ -52,6 +54,7 @@ public class WebApisDaoImpl implements WebApisDao{
         try {
             YjungleBlog blog = new YjungleBlog();
             blog.setAuthor(requestData.get("author"));
+            blog.setTitle(requestData.get("title"));
             blog.setBody(requestData.get("body"));
             blog.setDate_published(formatDate());
             blog.setImage_url(requestData.get("image_link"));
