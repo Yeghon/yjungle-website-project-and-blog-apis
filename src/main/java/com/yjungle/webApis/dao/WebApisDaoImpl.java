@@ -33,6 +33,7 @@ public class WebApisDaoImpl implements WebApisDao{
             projects.setDownload_url(requestData.get("download_link"));
             projects.setImage_url(requestData.get("image_link"));
             projects.setTeaser(requestData.get("teaser"));
+            projects.setViews((int) (Math.random() * 100));
 
             projectsRepository.save(projects);
 
@@ -59,6 +60,7 @@ public class WebApisDaoImpl implements WebApisDao{
             blog.setDate_published(formatDate());
             blog.setImage_url(requestData.get("image_link"));
             blog.setTeaser(requestData.get("teaser"));
+            blog.setViews((int) (Math.random() * 100));
 
             blogRepository.save(blog);
 
