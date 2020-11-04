@@ -1,0 +1,62 @@
+<!--<configuration debug="true">-->
+
+<!--    <property name="HOME_LOG" value="logs/app.log"/>-->
+
+<!--    <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>${HOME_LOG}</file>-->
+
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd-HH-mm}.%i.log</fileNamePattern>-->
+<!--&lt;!&ndash;            <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>&ndash;&gt;-->
+<!--            &lt;!&ndash; each archived file, size max 10MB &ndash;&gt;-->
+<!--            <maxFileSize>10MB</maxFileSize>-->
+<!--            &lt;!&ndash; total size of all archive files, if total size > 20GB, it will delete old archived file &ndash;&gt;-->
+<!--            <totalSizeCap>20GB</totalSizeCap>-->
+<!--            &lt;!&ndash; 60 days to keep &ndash;&gt;-->
+<!--            <maxHistory>60</maxHistory>-->
+<!--        </rollingPolicy>-->
+
+<!--        <encoder>-->
+<!--            <pattern>%d %p %c{1.} [%t] %m%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--&lt;!&ndash;    <logger name="com.mkyong" level="debug" additivity="false">&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="FILE-ROLLING"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </logger>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <root level="error">&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="FILE-ROLLING"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </root>&ndash;&gt;-->
+
+<!--</configuration>-->
+
+<configuration debug="true">
+    <appender name="roll-by-time"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>target/slf4j/roll-by-time/app.log</file>
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>target/slf4j/roll-by-time/app.%d{yyyy-MM-dd-HH-mm}.log.zip
+            </fileNamePattern>
+            <maxHistory>20</maxHistory>
+            <totalSizeCap>1MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--    # Override log level for specified package-->
+    <!--    <logger name="com.baeldung.slf4j.Slf4jRollingExample" level="TRACE">-->
+    <!--        <appender-ref ref="roll-by-size"/>-->
+    <!--        <appender-ref ref="roll-by-time"/>-->
+    <!--        <appender-ref ref="roll-by-time-and-size"/>-->
+    <!--    </logger>-->
+
+    <!--    <root level="INFO">-->
+    <!--        <appender-ref ref="stdout"/>-->
+    <!--        <appender-ref ref="fout"/>-->
+    <!--    </root>-->
+
+</configuration>

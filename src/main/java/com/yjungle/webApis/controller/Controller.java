@@ -11,6 +11,8 @@ import com.yjungle.webApis.entity.YjungleProjects;
 import com.yjungle.webApis.repository.YjungleBlogRepository;
 import com.yjungle.webApis.repository.YjungleProjectsRepository;
 import com.yjungle.webApis.utils.ApiResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,8 @@ import java.util.HashMap;
 @RestController
 public class Controller {
 
+    public Logger logger = LoggerFactory.getLogger(Controller.class);
+
     @Autowired
     private Environment environment;
 
@@ -36,6 +40,8 @@ public class Controller {
 
     @RequestMapping("/")
     public String home(){
+        logger.info("It works");
+        System.out.println("It works!");
         return "It works!";
     }
 
