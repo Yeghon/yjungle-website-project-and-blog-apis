@@ -17,7 +17,6 @@ public class WebApisApplication {
 	private static final Logger logger = LoggerFactory.getLogger(WebApisApplication.class);
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(WebApisApplication.class, args);
 	}
 
